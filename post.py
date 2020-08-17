@@ -9,11 +9,17 @@ if __name__ == '__main__':
             'curso': 'python',
             'nivel': 'intermedio'}
 
-    response = requests.post(url, data=json.dumps(payload))
+    headers = {'Content-Type': 'application/json',
+               'access-token': '1234'}
+
+    response = requests.post(url, data=json.dumps(payload), headers=headers)
 
     # json post se encarga de serializarlos
     # data entonces nosotros los serializamos
     print(response.url)
 
     if response.status_code == 200:
-        pprint.pprint(response.content)
+        #pprint.pprint(response.content)
+        headers_response = response.headers #Dic
+        server =  headers_response['Server']
+        print(server)
