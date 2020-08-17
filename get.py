@@ -1,4 +1,5 @@
 import requests
+import json
 
 if __name__ == '__main__':
     url = 'https://httpbin.org/get'
@@ -12,5 +13,12 @@ if __name__ == '__main__':
     print(response.url)
 
     if response.status_code == 200:
-        content = response.content
-        print(content)
+        """
+        response_json = response.json() #Dic
+        origin = response_json['origin']
+        print(origin)
+        """
+
+        response_json = json.loads(response.text)
+        origin = response_json['origin']
+        print(origin)
