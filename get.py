@@ -1,12 +1,16 @@
 import requests
 
 if __name__ == '__main__':
-    url = 'https://www.google.com.mx/'  #Peticion a servidores de google
-    response = requests.get(url)
+    url = 'https://httpbin.org/get'
 
-    #print(response)
+    args = {'nombre': 'Eduardo',
+            'curso': 'python',
+            'nivel': 'intermedio'}
+
+    response = requests.get(url, params=args)
+
+    print(response.url)
+
     if response.status_code == 200:
         content = response.content
-        file = open("google.html", 'wb')
-        file.write(content)
-        file.close()
+        print(content)
